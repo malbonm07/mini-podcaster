@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPodcasts } from '../thunks/podcasts';
+import { fetchAllPodcasts } from '../thunks/podcasts';
 
 const initialState = {
     podcasts: [],
@@ -18,14 +18,14 @@ const podcastsSlice = createSlice({
     },
     extraReducers: (builder) =>
     builder
-        .addCase(fetchPodcasts.pending, (state) => {
+        .addCase(fetchAllPodcasts.pending, (state) => {
             state.loadingStatus = 'LOADING';
         })
-        .addCase(fetchPodcasts.fulfilled, (state, { data }) => {
+        .addCase(fetchAllPodcasts.fulfilled, (state, { data }) => {
             state.loadingStatus = 'FULFILLED';
             state.podcasts = data;
         })
-        .addCase(fetchPodcasts.rejected, (state, { error }) => {
+        .addCase(fetchAllPodcasts.rejected, (state, { error }) => {
             state.loadingStatus = 'FAILED';
             state.loadError = error.message ?? 'Unknown error';
         }),

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchPodcasts = createAsyncThunk(
+export const fetchAllPodcasts = createAsyncThunk(
   'podcasts/fetchAllPodcasts',
   async () => {
 
