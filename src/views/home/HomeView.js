@@ -1,10 +1,12 @@
 import React from 'react'
+import AppHeader from '../../components/AppHeader'
+import AppWrapper from '../../components/common/AppWrapper'
 
 function HomeView() {
   return (
-    <div>
-        <h1>TITULO HOME</h1>
-    </div>
+    <AppWrapper>
+        <AppHeader></AppHeader>
+    </AppWrapper>
   )
 }
 
