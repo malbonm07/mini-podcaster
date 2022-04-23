@@ -1,16 +1,15 @@
-import React, { useState, useMemo, useEffect } from 'react'
-import AppHeader from '../../components/AppHeader'
-import AppSearcher from '../../components/AppSearcher'
-import PodcastCard from '../../components/PodcastCard'
-import AppWrapper from '../../components/common/AppWrapper'
-import GridList from '../../components/common/GridList'
+import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {usePodcasts} from '../../store/selectors/podcasts';
 import {isEmptyOrExpired, getAllPodcastsFromLocalStorage} from '../../utils/helpers';
-import {fetchAllPodcasts} from '../../store/thunks/podcasts'
+import {fetchAllPodcasts} from '../../store/thunks/podcasts';
 import { useDispatch } from 'react-redux';
-import {setPodcasts} from '../../store/slices/podcasts'
-
+import {setPodcasts} from '../../store/slices/podcasts';
+import AppHeader from '../../components/AppHeader';
+import AppSearcher from '../../components/AppSearcher';
+import PodcastCard from '../../components/PodcastCard';
+import AppWrapper from '../../components/common/AppWrapper';
+import GridList from '../../components/common/GridList';
 
 function HomeView() {
   const dispatch = useDispatch();
@@ -22,8 +21,7 @@ function HomeView() {
     isEmptyOrExpired() ? dispatch(fetchAllPodcasts()) : dispatch(setPodcasts(getAllPodcastsFromLocalStorage()));
   }, [])
   
-
-
+  
   return (
     <AppWrapper>
         <AppHeader></AppHeader>

@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAllPodcasts } from '../thunks/podcasts';
+import { fetchAllPodcasts, fetchPodcast, fetchPodcastEpisodes } from '../thunks/podcasts';
 import {savePodcasts} from '../../utils/helpers';
 
 const initialState = {
     podcasts: [],
     currentPodcast: {},
-    currentCollection: [],
+    currentPodcastEpisodes: [],
     podcastsCache: [],
     loadingStatus: null,
     loadError: null,
@@ -17,6 +17,12 @@ const podcastsSlice = createSlice({
     reducers: {
         setPodcasts(state, action) {
             state.podcasts = action.payload;
+        },
+        setPodcast(state, action) {
+            state.currentPodcast = action.payload;
+        },
+        clearPreviousPodcast(state) {
+            state.currentPodcast = {};
         }
     },
     extraReducers: (builder) =>
@@ -26,7 +32,6 @@ const podcastsSlice = createSlice({
         })
         .addCase(fetchAllPodcasts.fulfilled, (state, {payload}) => {
             state.loadingStatus = 'FULFILLED';
-            if(!payload.feed) return;
             const {entry} = payload.feed;
             savePodcasts(entry)
             state.podcasts = entry;
@@ -34,9 +39,33 @@ const podcastsSlice = createSlice({
         .addCase(fetchAllPodcasts.rejected, (state, { error }) => {
             state.loadingStatus = 'FAILED';
             state.loadError = error.message ?? 'Unknown error';
-        }),
+        })
+
+        .addCase(fetchPodcast.pending, (state) => {
+            state.loadingStatus = 'LOADING';
+        })
+        .addCase(fetchPodcast.fulfilled, (state, {payload}) => {
+            state.loadingStatus = 'FULFILLED';
+            state.currentPodcast = payload;
+        })
+        .addCase(fetchPodcast.rejected, (state, { error }) => {
+            state.loadingStatus = 'FAILED';
+            state.loadError = error.message ?? 'Unknown error';
+        })
+
+        .addCase(fetchPodcastEpisodes.pending, (state) => {
+            state.loadingStatus = 'LOADING';
+        })
+        .addCase(fetchPodcastEpisodes.fulfilled, (state, {payload}) => {
+            state.loadingStatus = 'FULFILLED';
+            state.currentPodcastEpisodes = payload;
+        })
+        .addCase(fetchPodcastEpisodes.rejected, (state, { error }) => {
+            state.loadingStatus = 'FAILED';
+            state.loadError = error.message ?? 'Unknown error';
+        })
 });
 
-export const {setPodcasts} = podcastsSlice.actions;
+export const {setPodcasts, setPodcast, clearPreviousPodcast} = podcastsSlice.actions;
 
 export default podcastsSlice.reducer;

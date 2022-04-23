@@ -6,13 +6,14 @@ import AppLoader from './AppLoader';
 import FlexContainer from './common/FlexContainer';
 import {useIsLoadingPodcasts} from '../store/selectors/podcasts';
 
-const Header = styled.header `
+export const Header = styled.header `
 	display: flex;
 	justify-content: space-between;
 	align-content: center;
 	border-bottom: 1px solid #e4e1e1;
 	margin-bottom: 20px;
 	padding: 8px 0px;
+	height: 50px;
 `;
 
 const AppName = styled.span`
@@ -23,13 +24,13 @@ const AppName = styled.span`
 	display: block;
 `
 
-function AppHeader() {
+function AppHeader({className}) {
 	const isLoading = useIsLoadingPodcasts();
 	return (
-		<Header>
+		<Header className={className}>
 			<FlexContainer $alignItems="center" $justify="space-between" fluid>
 					<Link to="/">
-							<AppName>Podcaster</AppName>
+						<AppName>Podcaster</AppName>
 					</Link>
 					{ isLoading && <AppLoader></AppLoader>}
 			</FlexContainer>

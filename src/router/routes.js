@@ -1,7 +1,7 @@
 import PathNames from './PathNames';
 import HomeView from '../views/home/HomeView';
 import PodcastDetailsView from '../views/podcast/PodcastDetailsView';
-import EpisodeView from '../views/podcast/episode/EpisodeView';
+import EpisodesView from '../views/podcast/episode/EpisodesView';
 import EpisodeDetailsView from '../views/podcast/episode/EpisodeDetailsView';
 
 const Routes = [
@@ -15,7 +15,7 @@ const Routes = [
         children: [
             {
                 index: true,
-                element: <EpisodeView />
+                element: <EpisodesView />
             },
             {
                 path: PathNames.EPISODE_DETAILS,

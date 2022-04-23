@@ -68,5 +68,14 @@ export const getAllPodcastsFromLocalStorage = () => {
   if(data && data.podcasts.length > 0) {
     return data.podcasts;
   }
-  console.error('GET_ALL_PODCASTS_FROM_LOCALSTORAGE got undefined or empty data')
+  console.error('getAllPodcastsFromLocalStorage got undefined or empty data')
+}
+
+export const getPoscastFromLocalStorage = (podcastId) => {
+  const data = JSON.parse(localStorage.getItem('podInDetails')) || undefined
+  if(data && data.podcastsInDetails.length > 0) {
+    let podcast = data.podcastsInDetails.find(p => p.trackId == podcastId)
+    return podcast;
+  }
+  console.error('getPoscastFromLocalStorage got undefined or empty data')
 }

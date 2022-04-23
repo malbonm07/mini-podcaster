@@ -42,7 +42,7 @@ function AppSearcher({name, setName}) {
 			<FlexContainer $alignItems="center" $mr="10">
 				<Counter>{podcasts && Array.isArray(podcasts) ? podcasts.length : 0}</Counter>
 			</FlexContainer>
-			<Input onChange={handleChange} value={name}></Input>
+			<Input onChange={handleChange} value={name} placeholder="Buscar podcast"></Input>
     </Container>
   )
 }
