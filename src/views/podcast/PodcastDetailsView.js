@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { Outlet, useParams } from "react-router-dom";
 import AppWrapper from '../../components/common/AppWrapper';
 import PodcastBanner from '../../components/PodcastBanner';
@@ -10,7 +10,7 @@ import {usePodcasts, usePodcast} from '../../store/selectors/podcasts'
 
 const StyledAppWrapper = styled(AppWrapper)`
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 440px 1fr;
   grid-template-rows: auto auto;
   grid-template-areas: 
     "header header"
@@ -47,8 +47,6 @@ function PodcastDetailsView() {
   useEffect(() => {
     dispatch(mountedPodcastDetails(podcastId))
   }, [])
-  
-
 
   return (
     <StyledAppWrapper>
