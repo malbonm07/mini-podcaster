@@ -1,1 +1,1 @@
-export * from '@/services/podcasts';
+export * from './podcasts';
