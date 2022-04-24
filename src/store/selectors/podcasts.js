@@ -1,8 +1,6 @@
 import { shallowEqual, useSelector } from 'react-redux';
 
-const isLoadingPodcasts = (state) => {
-  return state.podcasts.loadingStatus === "LOADING";
-};
+const isLoadingPodcasts = (state) => state.podcasts.loadingStatus === "LOADING";
 
 const podcastsSelector = (state)  => state.podcasts.podcasts;
 

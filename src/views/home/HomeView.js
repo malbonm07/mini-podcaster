@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import {usePodcasts} from '../../store/selectors/podcasts';
 import {isEmptyOrExpired, getAllPodcastsFromLocalStorage} from '../../utils/helpers';
 import {fetchAllPodcasts} from '../../store/thunks/podcasts';
@@ -18,7 +17,13 @@ function HomeView() {
   const podcasts = useMemo(() => filteredPodcastsByName(name, podcastsList), [name, podcastsList]);
 
   useEffect(() => {
-    isEmptyOrExpired() ? dispatch(fetchAllPodcasts()) : dispatch(setPodcasts(getAllPodcastsFromLocalStorage()));
+    if(isEmptyOrExpired()) {
+      dispatch(fetchAllPodcasts())  
+    }
+    else {
+      const podcasts = getAllPodcastsFromLocalStorage();
+      dispatch(setPodcasts(podcasts))
+    }
   }, [])
   
   

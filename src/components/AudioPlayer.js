@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import theme from '../styles/theme';
 import SoundOn from '../assets/images/sound-medium.svg';
 import SoundOff from '../assets/images/sound-off.svg';
+import {spin} from '../styles/keyframes';
 
 const AudioWrapper = styled.div`
   width: 100%;
@@ -82,7 +83,7 @@ const Spinner = styled.div`
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/loading.png);
   background-size: cover;
   background-repeat: no-repeat;
-  animation: spin 0.4s linear infinite;
+  animation: ${spin} 0.4s linear infinite;
 `;
 
 const PauseButton = styled.div`
@@ -144,11 +145,10 @@ class AppAudioPlayer extends React.Component {
 
     this.setState({percent: `${percent}%`, currentTime: this.formatTime(current)})
   }
-  // ended(){
-  //   let audio = structuredClone(this.state.audio)
-  //   audio.current.currentTime = 0;
-  //   this.setState({playing: false, audio: audio})
-  // }
+  ended(){
+    this.state.audio.audio.current.currentTime = 0;
+    this.setState({playing: false})
+  }
   canPlay() {
     this.setState({loaded: true, volume: 1})
   }

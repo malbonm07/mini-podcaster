@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import Card from './common/Card'
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,9 @@ const Body = styled.div`
 	text-align: left;
 	padding-left: 6px;
 	padding: 0px 12px 0px 12px;
+	h1 {
+		padding-left: 8px;
+	}
 `;
 
 const Footer = styled.div`
@@ -39,6 +42,7 @@ const Title = styled.h1`
 	color: #333;
 	font-weight: bold;
 	margin-bottom: 4px;
+	padding-left: 0px;
 	cursor: pointer;
 `;
 
@@ -86,7 +90,7 @@ function PodcastBanner({imgSrc, summary, trackName, artistName, trackId}) {
 					Description
 				</Title>
 				<Summary>
-					{summary ? summary.label : ''}
+					{summary?.label || ''}
 				</Summary>
 			</Footer>
     </StyledCard>

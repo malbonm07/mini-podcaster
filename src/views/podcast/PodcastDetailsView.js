@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react'
-import { Outlet, useParams, useLocation } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import AppWrapper from '../../components/common/AppWrapper';
 import PodcastBanner from '../../components/PodcastBanner';
 import AppHeader from '../../components/AppHeader';
@@ -43,10 +43,8 @@ function PodcastDetailsView() {
   const dispatch = useDispatch();
   const podcasts = usePodcasts();
   const currentPodcast = usePodcast();
-  const navigate = useLocation();
   const fullPodcast = useMemo(() => mergePodcast(podcasts, currentPodcast), [podcasts, currentPodcast]);
   let {podcastId} = useParams();
-  console.log(navigate)
 
   useEffect(() => {
     window.scrollTo(0, 0);

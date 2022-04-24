@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components';
 import Card from '../../../components/common/Card';
 import AppAudioPlayer from '../../../components/AudioPlayer'
 import { useEpisodes } from '../../../store/selectors/podcasts';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const StyledCard = styled(Card)`
   text-align: left;
@@ -32,6 +32,10 @@ function EpisodeDetailsView() {
   const episodes = useEpisodes();
   const { episodeId } = useParams();
   const episode = episodes[episodeId]
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <StyledCard>

@@ -3,6 +3,7 @@ import HomeView from '../views/home/HomeView';
 import PodcastDetailsView from '../views/podcast/PodcastDetailsView';
 import EpisodesView from '../views/podcast/episode/EpisodesView';
 import EpisodeDetailsView from '../views/podcast/episode/EpisodeDetailsView';
+import { Navigate } from 'react-router-dom'
 
 const Routes = [
     {
@@ -23,6 +24,10 @@ const Routes = [
             }
         ],
     },
+    {
+        path: PathNames.NOTFOUND,
+        element: <Navigate to="/"/>
+    }
 ];
 
 export default Routes;

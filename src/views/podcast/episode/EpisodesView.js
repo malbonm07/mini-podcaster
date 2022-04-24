@@ -5,7 +5,7 @@ import theme from '../../../styles/theme';
 import {useEpisodes, usePodcast, useIsLoadingPodcasts} from '../../../store/selectors/podcasts';
 import { useNavigate } from 'react-router-dom';
 
-const EpisodesHader = styled(Card)`
+const EpisodeHeader = styled(Card)`
   min-height: auto;
   padding: 10px 30px;
   margin-bottom: 20px;
@@ -71,11 +71,11 @@ function EpisodeView() {
 
   return (
     <>
-      <EpisodesHader>
+      <EpisodeHeader>
         <EpisodeTitle>
           Episodes: {isLoading && !episodes ? 0 : episodes.length}
         </EpisodeTitle>
-      </EpisodesHader>
+      </EpisodeHeader>
       <EpisodesBody>
         <EpisodeList>
           <EpisodeItemHeader>
@@ -85,9 +85,9 @@ function EpisodeView() {
           </EpisodeItemHeader>
           {!isLoading && episodes.map(((episode, i) => (
             <EpisodeItem onClick={() => navigate(`/podcast/${podcast.trackId}/episode/${i}`)} key={i} index={i}>
-              <span>{episode.title}</span>
-              <span>{timeFormat(episode.published)}</span>
-              <span>{formatDuration(episode.itunes_duration)}</span>
+              <span>{episode?.title || '--'}</span>
+              <span>{timeFormat(episode?.published)}</span>
+              <span>{formatDuration(episode?.itunes_duration)}</span>
             </EpisodeItem>
           )))}
         </EpisodeList>

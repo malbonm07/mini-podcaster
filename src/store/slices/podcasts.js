@@ -6,7 +6,6 @@ const initialState = {
     podcasts: [],
     currentPodcast: {},
     currentPodcastEpisodes: [],
-    podcastsCache: [],
     loadingStatus: null,
     loadError: null
 };
@@ -54,7 +53,7 @@ const podcastsSlice = createSlice({
             state.loadError = error.message ?? 'Unknown error';
             console.error(`fetchPodcast.rejected error details: ${state.loadError}`)
             if(state.loadError.includes('403')) {
-                // cors error
+                // cors error make something here
             }
         })
 

@@ -38,10 +38,21 @@ export const mountedPodcastDetails = createAsyncThunk(
   async (podcastId, {dispatch, getState}) => {
     dispatch(clearPreviousPodcast())
     
-    isEmptyOrExpired() ? 
-    await dispatch(fetchAllPodcasts()) : dispatch(setPodcasts(getAllPodcastsFromLocalStorage()));
-    noExistOrExpired(podcastId) ?
-    await dispatch(fetchPodcast(podcastId)) : dispatch(setPodcast(getPoscastFromLocalStorage(podcastId)))
+    if(isEmptyOrExpired()) {
+      await dispatch(fetchAllPodcasts())  
+    }
+    else {
+      const podcasts = getAllPodcastsFromLocalStorage();
+      dispatch(setPodcasts(podcasts))
+    }
+
+    if(noExistOrExpired(podcastId)) {
+      await dispatch(fetchPodcast(podcastId))
+    }
+    else {
+      const podcast = getPoscastFromLocalStorage(podcastId);
+      dispatch(setPodcast(podcast))
+    }
 
     const {currentPodcast} = getState().podcasts
     await dispatch(fetchPodcastEpisodes(currentPodcast.feedUrl))

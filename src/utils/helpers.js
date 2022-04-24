@@ -20,8 +20,8 @@ export function savePodcastDetails(podcast) {
     podcastsInDetails: [],
     expire: date.getTime() + day
   }
-  if(localStorage.getItem('podInDetails')) {
-    data.podcastsInDetails = JSON.parse(localStorage.getItem('podInDetails')).podcastsInDetails;
+  if(localStorage.getItem('podsDetails')) {
+    data.podcastsInDetails = JSON.parse(localStorage.getItem('podsDetails')).podcastsInDetails;
     if(data.podcastsInDetails.length > 0) {
       data.podcastsInDetails.map(p => {
         if(p.trackId == podcast.trackId) {
@@ -39,7 +39,7 @@ export function savePodcastDetails(podcast) {
   else {
     data.podcastsInDetails.push(podcast)
   }
-  localStorage.setItem('podInDetails', JSON.stringify(data));
+  localStorage.setItem('podsDetails', JSON.stringify(data));
 }
 
 export function isEmptyOrExpired() {
@@ -52,7 +52,7 @@ export function isEmptyOrExpired() {
 }
 
 export function noExistOrExpired(podcastId) {
-  const data = JSON.parse(localStorage.getItem('podInDetails')) || undefined;
+  const data = JSON.parse(localStorage.getItem('podsDetails')) || undefined;
   const date = new Date();
   if(!data || data.podcastsInDetails.length < 1) {
     return true;
@@ -72,7 +72,7 @@ export const getAllPodcastsFromLocalStorage = () => {
 }
 
 export const getPoscastFromLocalStorage = (podcastId) => {
-  const data = JSON.parse(localStorage.getItem('podInDetails')) || undefined
+  const data = JSON.parse(localStorage.getItem('podsDetails')) || undefined
   if(data && data.podcastsInDetails.length > 0) {
     let podcast = data.podcastsInDetails.find(p => p.trackId == podcastId)
     return podcast;
