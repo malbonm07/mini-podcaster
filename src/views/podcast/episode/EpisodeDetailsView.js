@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import Card from '../../../components/common/Card';
+import AppAudioPlayer from '../../../components/AudioPlayer'
 import { useEpisodes } from '../../../store/selectors/podcasts';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -36,7 +37,7 @@ function EpisodeDetailsView() {
     <StyledCard>
       <Title>{episode?.title || '--'}</Title>
       <Description dangerouslySetInnerHTML={createMarkup(episode?.description || '--')}></Description>
-    <div>EpisodeDetailsView</div>
+      <AppAudioPlayer audioSrc={episodes[episodeId] ? episodes[episodeId].enclosures[0].url : null}></AppAudioPlayer>
     </StyledCard>
   )
 }

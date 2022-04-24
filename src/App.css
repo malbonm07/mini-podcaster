@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes spin {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(1turn);
+  }
+}

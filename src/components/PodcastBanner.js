@@ -39,6 +39,7 @@ const Title = styled.h1`
 	color: #333;
 	font-weight: bold;
 	margin-bottom: 4px;
+	cursor: pointer;
 `;
 
 const Description = styled.p`
