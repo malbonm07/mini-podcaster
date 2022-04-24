@@ -25,16 +25,17 @@ function HomeView() {
   return (
     <AppWrapper>
         <AppHeader></AppHeader>
-        <AppSearcher name={name} setName={setName}></AppSearcher>
-        <GridList $mt="120">
+        <AppSearcher name={name} setName={setName} style={{marginTop: '20px'}} ></AppSearcher>
+        <GridList  $mt="120">
           {podcasts.map(podcast => (
-            <Link to={`/podcast/${podcast.id ? podcast.id.attributes['im:id'] : undefined}`} key={podcast.id.attributes['im:id']}>
-              <PodcastCard 
+            <div key={podcast.id.attributes['im:id']}>
+              <PodcastCard
+                to={`/podcast/${podcast.id ? podcast.id.attributes['im:id'] : undefined}`}
                 author={podcast['im:name'].label}
                 title={podcast['im:artist'].label}
                 imgSrc={podcast['im:image'] ? podcast['im:image'][podcast['im:image'].length - 1] : ''}>
               </PodcastCard>
-          </Link>
+            </div>
           ))}
         </GridList>
     </AppWrapper>

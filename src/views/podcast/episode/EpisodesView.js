@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import Card from '../../../components/common/Card';
 import theme from '../../../styles/theme';
-import {useEpisodes, usePodcast, useIsLoadingPodcasts} from '../../../store/selectors/podcasts'
+import {useEpisodes, usePodcast, useIsLoadingPodcasts} from '../../../store/selectors/podcasts';
 import { useNavigate } from 'react-router-dom';
 
 const EpisodesHader = styled(Card)`
@@ -97,7 +97,7 @@ function EpisodeView() {
 }
 
 const timeFormat = (value) => {
-  if (!value) return '';
+  if (!value && !/^\d+$/.test(value)) return '--';
   let fullDate = new Date(value);
   let year = fullDate.getFullYear();
   let month = ("0" + (fullDate.getMonth() + 1)).slice(-2);

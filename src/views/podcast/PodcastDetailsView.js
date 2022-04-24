@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react'
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams, useLocation } from "react-router-dom";
 import AppWrapper from '../../components/common/AppWrapper';
 import PodcastBanner from '../../components/PodcastBanner';
 import AppHeader from '../../components/AppHeader';
@@ -11,7 +11,8 @@ import {usePodcasts, usePodcast} from '../../store/selectors/podcasts'
 const StyledAppWrapper = styled(AppWrapper)`
   display: grid;
   grid-template-columns: 440px 1fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: 64px auto;
+  row-gap: 20px;
   grid-template-areas: 
     "header header"
     "aside main";
@@ -27,6 +28,7 @@ const Aside = styled.aside`
 const Main = styled.main`
   grid-area: main;
   padding-right: 14px;
+  align-self: start;
 `;
 
 const StyledHeader = styled(AppHeader)`
@@ -41,10 +43,13 @@ function PodcastDetailsView() {
   const dispatch = useDispatch();
   const podcasts = usePodcasts();
   const currentPodcast = usePodcast();
+  const navigate = useLocation();
   const fullPodcast = useMemo(() => mergePodcast(podcasts, currentPodcast), [podcasts, currentPodcast]);
   let {podcastId} = useParams();
+  console.log(navigate)
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(mountedPodcastDetails(podcastId))
   }, [])
 

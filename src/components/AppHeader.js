@@ -11,9 +11,7 @@ export const Header = styled.header `
 	justify-content: space-between;
 	align-content: center;
 	border-bottom: 1px solid #e4e1e1;
-	margin-bottom: 20px;
-	padding: 8px 0px;
-	height: 50px;
+	height: 64px;
 `;
 
 const AppName = styled.span`

@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from './common/Card'
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const StyledCard = styled(Card)`
   width: 100%;
@@ -42,9 +43,11 @@ const Image = styled.img`
   object-position: center;
 `
 
-function PodcastCard({author, title, imgSrc}) {
+function PodcastCard({author, title, imgSrc, to}) {
+  const navigate = useNavigate();
+
   return (
-    <StyledCard>
+    <StyledCard onClick={() => navigate(to)}>
       <Article>
         <Header>
           <Image src={imgSrc.label ? imgSrc.label : ''}></Image>

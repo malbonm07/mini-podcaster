@@ -8,7 +8,7 @@ const initialState = {
     currentPodcastEpisodes: [],
     podcastsCache: [],
     loadingStatus: null,
-    loadError: null,
+    loadError: null
 };
 
 const podcastsSlice = createSlice({
@@ -39,6 +39,7 @@ const podcastsSlice = createSlice({
         .addCase(fetchAllPodcasts.rejected, (state, { error }) => {
             state.loadingStatus = 'FAILED';
             state.loadError = error.message ?? 'Unknown error';
+            console.error(`fetchAllPodcasts.rejected error details: ${state.loadError}`)
         })
 
         .addCase(fetchPodcast.pending, (state) => {
@@ -51,6 +52,10 @@ const podcastsSlice = createSlice({
         .addCase(fetchPodcast.rejected, (state, { error }) => {
             state.loadingStatus = 'FAILED';
             state.loadError = error.message ?? 'Unknown error';
+            console.error(`fetchPodcast.rejected error details: ${state.loadError}`)
+            if(state.loadError.includes('403')) {
+                // cors error
+            }
         })
 
         .addCase(fetchPodcastEpisodes.pending, (state) => {
@@ -63,6 +68,7 @@ const podcastsSlice = createSlice({
         .addCase(fetchPodcastEpisodes.rejected, (state, { error }) => {
             state.loadingStatus = 'FAILED';
             state.loadError = error.message ?? 'Unknown error';
+            console.error(`fetchPodcastEpisodes.rejected error details: ${state.loadError}`)
         })
 });
 
