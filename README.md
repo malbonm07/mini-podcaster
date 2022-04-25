@@ -5,7 +5,7 @@ Una aplicación mini podcast desarrollado con VueJS. Incluye 3 vistas, el home c
 Para los problemas de cors se cambio el servicio de [cors-anywhere](https://cors-anywhere.herokuapp.com/) por un servidor proxy propio que desplegué en heroku.
 
 ## Demo
-[DEMO](https://mini-podcaster.netlify.app/)
+[DEMO DE LA APLICACIÓN](https://mini-podcaster-react.netlify.app/)
 
 ## Screenshots
 ![App Podcaster](https://i.imgur.com/M3LgGIZ.png)
