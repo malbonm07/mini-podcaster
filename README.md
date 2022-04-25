@@ -1,8 +1,10 @@
 # Mini Podcaster
-Una aplicación mini podcast desarrollado con VueJS. Incluye 3 vistas, el home con la lista de podcasts, la vista de detalle del podcast seleccionado con su lista de episodios y la vista para el episodio en detalle.
+Una aplicación mini podcast desarrollado con ReactJS. Incluye 3 vistas, el home con la lista de podcasts, la vista de detalle del podcast seleccionado con su lista de episodios y la vista para el episodio en detalle.
 
 ## IMPORTANTE❗
 Para los problemas de cors se cambio el servicio de [cors-anywhere](https://cors-anywhere.herokuapp.com/) por un servidor proxy propio que desplegué en heroku.
+Para utilizar el proxy en development es necesario tener configurado el puerto en 3000 o 8080 del lado del front, por defecto el proyecto ya viene configurado para utilizar el puerto 3000 al correr el script NPM RUN START.
+
 
 ## Demo
 [DEMO DE LA APLICACIÓN](https://mini-podcaster-react.netlify.app/)
