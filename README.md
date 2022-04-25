@@ -9,15 +9,16 @@ Para los problemas de cors se cambio el servicio de [cors-anywhere](https://cors
 
 ## Screenshots
 ![App Podcaster](https://i.imgur.com/M3LgGIZ.png)
-![App Podcaster](https://i.imgur.com/MAHA5Qf.png?1)
-![App Podcaster](https://i.imgur.com/qxEQpqA.png?1)
+![App Podcaster](https://i.imgur.com/Tcxpgpr.png?1)
+![App Podcaster](https://i.imgur.com/MWErUZb.png?1)
 
 ## Tecnologías/frameworks usados
 <b>Desarrollado con:</b>
-- [VueJS](https://v2.vuejs.org/)
+- [ReactJS](https://v2.vuejs.org/)
 - JavaScript
 - Html
-- CSS: Sass
+- Styled components
+- Redux-toolkit
 
 ## Proyecto setup
 ```
