@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchAllPodcasts, fetchPodcast, fetchPodcastEpisodes } from '../thunks/podcasts';
-import {savePodcasts} from '../../utils/helpers';
+import {savePodcasts, savePodcastEpisodes} from '../../utils/helpers';
 
 const initialState = {
     podcasts: [],
@@ -22,6 +22,9 @@ const podcastsSlice = createSlice({
         },
         clearPreviousPodcast(state) {
             state.currentPodcast = {};
+        },
+        setEpisodes(state, action) {
+            state.currentPodcastEpisodes = action.payload
         }
     },
     extraReducers: (builder) =>
@@ -62,6 +65,7 @@ const podcastsSlice = createSlice({
         })
         .addCase(fetchPodcastEpisodes.fulfilled, (state, {payload}) => {
             state.loadingStatus = 'FULFILLED';
+            savePodcastEpisodes(state.currentPodcast, payload)
             state.currentPodcastEpisodes = payload;
         })
         .addCase(fetchPodcastEpisodes.rejected, (state, { error }) => {
@@ -71,6 +75,6 @@ const podcastsSlice = createSlice({
         })
 });
 
-export const {setPodcasts, setPodcast, clearPreviousPodcast} = podcastsSlice.actions;
+export const {setPodcasts, setPodcast, clearPreviousPodcast, setEpisodes} = podcastsSlice.actions;
 
 export default podcastsSlice.reducer;

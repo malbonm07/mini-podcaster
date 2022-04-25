@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {getPodcasts, getPodcast, getPodcastEpisodes} from '../../services'
-import {isEmptyOrExpired,noExistOrExpired, getAllPodcastsFromLocalStorage, getPoscastFromLocalStorage, savePodcastDetails} from '../../utils/helpers';
-import {setPodcasts, setPodcast, clearPreviousPodcast} from '../../store/slices/podcasts';
+import {isEmptyOrExpired,noExistOrExpired, getAllPodcastsFromLocalStorage, getPoscastFromLocalStorage, savePodcastDetails, episodesNotExist, getEpisodesFromLocalStorage} from '../../utils/helpers';
+import {setPodcasts, setPodcast, clearPreviousPodcast, setEpisodes} from '../../store/slices/podcasts';
 
 export const fetchAllPodcasts = createAsyncThunk(
   'podcasts/fetchAllPodcasts',
@@ -45,7 +45,7 @@ export const mountedPodcastDetails = createAsyncThunk(
       const podcasts = getAllPodcastsFromLocalStorage();
       dispatch(setPodcasts(podcasts))
     }
-
+    
     if(noExistOrExpired(podcastId)) {
       await dispatch(fetchPodcast(podcastId))
     }
@@ -53,8 +53,13 @@ export const mountedPodcastDetails = createAsyncThunk(
       const podcast = getPoscastFromLocalStorage(podcastId);
       dispatch(setPodcast(podcast))
     }
-
     const {currentPodcast} = getState().podcasts
-    await dispatch(fetchPodcastEpisodes(currentPodcast.feedUrl))
+    if(episodesNotExist(currentPodcast.trackId)) {
+      await dispatch(fetchPodcastEpisodes(currentPodcast.feedUrl))
+    }
+    else {
+      dispatch(setEpisodes(getEpisodesFromLocalStorage(currentPodcast.trackId)))
+    }
+    
   }
 );
