@@ -3,7 +3,7 @@ Una aplicación mini podcast desarrollado con ReactJS. Incluye 3 vistas, el home
 
 ## IMPORTANTE❗
 Para los problemas de cors se cambio el servicio de [cors-anywhere](https://cors-anywhere.herokuapp.com/) por un servidor proxy propio que desplegué en heroku.
-Para utilizar el proxy en development es necesario tener configurado el puerto en 3000 o 8080 del lado del front, por defecto el proyecto ya viene configurado para utilizar el puerto 3000 al correro el script NPM RUN START.
+Para utilizar el proxy en development es necesario tener configurado el puerto en 3000 o 8080 del lado del front, por defecto el proyecto ya viene configurado para utilizar el puerto 3000 al correr el script NPM RUN START.
 
 
 ## Demo
