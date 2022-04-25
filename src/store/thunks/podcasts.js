@@ -27,9 +27,9 @@ export const fetchPodcast = createAsyncThunk(
 export const fetchPodcastEpisodes = createAsyncThunk(
   'podcasts/fetchPodcastEpisodes',
   async (url) => {
-    const response = await getPodcastEpisodes(url)
-    if(!response.items) return;
-    return response.items
+    const {data} = await getPodcastEpisodes(url)
+    if(!data.items) return;
+    return data.items
   }
 );
 
