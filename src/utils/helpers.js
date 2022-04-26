@@ -22,6 +22,7 @@ export function savePodcastDetails(podcast) {
   }
   if(localStorage.getItem('podsDetails')) {
     data.podcastsInDetails = JSON.parse(localStorage.getItem('podsDetails')).podcastsInDetails;
+    data.expire = JSON.parse(localStorage.getItem('podsDetails')).expire;
     if(data.podcastsInDetails.length > 0) {
       data.podcastsInDetails.map(p => {
         if(p.trackId == podcast.trackId) {
@@ -75,19 +76,18 @@ export function noExistOrExpired(podcastId) {
   if(!data || data.podcastsInDetails.length < 1) {
     return true;
   }
+
+  if(date.getTime() > data.expire) {
+    localStorage.removeItem('podsDetails');
+    localStorage.removeItem('episodes');
+    return true;
+  }
+
   if(!data.podcastsInDetails.find(p => p.trackId == podcastId)) {
     return true;
   }
-  
-  if(date.getTime() > data.expire && localStorage.getItem('episodes')) {
-    const episodes = JSON.parse(localStorage.getItem('episodes')) || undefined
-    if(episodes[podcastId]) {
-      delete episodes[podcastId];
-      localStorage.setItem('episodes', JSON.stringify(data));
-    }
-  }
 
-  return date.getTime() > data.expire ? true : false;
+  return false;
 }
 
 export function episodesNotExist(podcastId) {
